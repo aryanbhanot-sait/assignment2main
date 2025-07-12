@@ -49,7 +49,7 @@ public interface StackADT<E>
      * Returns an iterator over the elements in the stack.
      * @return an iterator for the stack
      */
-    utilities.Iterator<E> iterator();
+    public Iterator<E> iterator();
 
     /**
      * Checks if the stack contains a specific element.

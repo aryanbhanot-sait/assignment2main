@@ -50,7 +50,7 @@ public interface QueueADT<E>
      * Returns an iterator over the elements in the queue.
      * @return an iterator for the queue
      */
-    utilities.Iterator<E> iterator();
+    public Iterator<E> iterator();
 
     /**
      * Checks if the queue contains a specific element.
