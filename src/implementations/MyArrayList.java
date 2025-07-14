@@ -16,7 +16,7 @@ public class MyArrayList<E> implements ListADT<E> {
     private int size;
 
     /**
-     * Constructs an empty list with an initial capacity based on the DEFAULT_CAPPACITY constant.
+     * Constructs an empty list with an initial capacity based on the DEFAULT_CAPACITY constant.
      */
     @SuppressWarnings("unchecked")
     public MyArrayList() {

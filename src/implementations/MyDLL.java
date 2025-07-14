@@ -295,7 +295,8 @@ public class MyDLL<E> implements ListADT<E> {
         
         if (toHold.length < size) {
             @SuppressWarnings("unchecked")
-            E[] newArray = (E[]) new Object[size];
+            E[] newArray = (E[]) java.lang.reflect.Array.newInstance(
+                toHold.getClass().getComponentType(), size);
             
             MyDLLNode<E> current = head;
             for (int i = 0; i < size; i++) {
