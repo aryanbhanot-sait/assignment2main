@@ -63,7 +63,22 @@ public class MyStack<E> implements StackADT<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return stack.iterator();
+        return new Iterator<E>() {
+            private int currentIndex = stack.size() - 1;
+            
+            @Override
+            public boolean hasNext() {
+                return currentIndex >= 0;
+            }
+            
+            @Override
+            public E next() {
+                if (!hasNext()) {
+                    throw new java.util.NoSuchElementException("No more elements in the stack");
+                }
+                return stack.get(currentIndex--);
+            }
+        };
     }
 
     @Override
@@ -81,12 +96,40 @@ public class MyStack<E> implements StackADT<E> {
 
     @Override
     public Object[] toArray() {
-        return stack.toArray();
+        Object[] array = new Object[size()];
+        for (int i = 0; i < size(); i++) {
+            array[i] = stack.get(stack.size() - 1 - i);
+        }
+        return array;
     }
 
     @Override
     public E[] toArray(E[] holder) throws NullPointerException {
-        return stack.toArray(holder);
+        if (holder == null) {
+            throw new NullPointerException("Input array cannot be null");
+        }
+        
+        if (holder.length < size()) {
+            @SuppressWarnings("unchecked")
+            E[] newArray = (E[]) java.lang.reflect.Array.newInstance(
+                holder.getClass().getComponentType(), size());
+            
+            for (int i = 0; i < size(); i++) {
+                newArray[i] = stack.get(stack.size() - 1 - i);
+            }
+            
+            return newArray;
+        }
+        
+        for (int i = 0; i < size(); i++) {
+            holder[i] = stack.get(stack.size() - 1 - i);
+        }
+        
+        if (holder.length > size()) {
+            holder[size()] = null;
+        }
+        
+        return holder;
     }
 
     @Override
